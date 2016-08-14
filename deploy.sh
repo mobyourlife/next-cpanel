@@ -2,6 +2,10 @@
 
 docker rm -f mob-cpanel
 
+docker rmi -f mob-cpanel
+
+docker build -t mob-cpanel .
+
 docker run  \
   --name mob-cpanel \
   --restart=always \
