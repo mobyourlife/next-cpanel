@@ -11,6 +11,6 @@ describe('Api Service', () => {
   });
 
   it('should ...', inject([ApiService], (api: ApiService) => {
-    expect(api.title).toBe('Angular 2');
+    expect(api.title).toBe('Mob Your Life');
   }));
 });
