@@ -225,7 +225,7 @@ module.exports = function makeWebpackConfig() {
    * Transforms .scss files to .css
    */
   config.sassLoader = {
-    //includePaths: [path.resolve(__dirname, "node_modules/foundation-sites/scss")]
+    includePaths: [path.resolve(__dirname, "node_modules/bootstrap-sass/assets/stylesheets/")]
   };
 
   /**
