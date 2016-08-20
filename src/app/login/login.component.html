@@ -2,13 +2,20 @@
   <header class="brand-container">
     <img src="/img/logo.png" alt="Mob Your Life">
   </header>
-  <div>
-    Clique no botão abaixo para entrar utilizando a sua conta do Facebook.
+  <div *ngIf="!loggedIn">
+    <p>Clique no botão abaixo para entrar utilizando a sua conta do Facebook.</p>
+    <div class="login-container">
+      <button class="btn btn-lg btn-social btn-facebook" (click)="login()">
+        <span class="ico-facebook">f</span>
+        Entrar com Facebook
+      </button>
+    </div>
   </div>
-  <div class="login-container">
-    <button class="btn btn-lg btn-social btn-facebook" (click)="facebookLogin()">
-      <span class="ico-facebook">f</span>
-      Entrar com Facebook
-    </button>
+  <div *ngIf="loggedIn">
+    <p>Olá, seja bem-vindo!</p>
+    <p>Você será redirecionado, um dia...</p>
+    <p>
+      <button class="btn btn-default" (click)="logout()">Sair</button>
+    </p>
   </div>
 </div>
