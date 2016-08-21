@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 declare var FB: any;
+const JS_SDK = 'facebook-jssdk';
 
 class LoginStatus {
   private loggedInCallback: Function;
@@ -78,6 +79,10 @@ export class FacebookService {
     this.initService();
   }
 
+  destroy() {
+    this.unloadSdk();
+  }
+
   login() {
     return this.loginStatus;
   }
@@ -104,15 +109,20 @@ export class FacebookService {
   }
 
   private loadSdk() {
-    const JS_SDK = 'facebook-jssdk';
-
     if (document.getElementById(JS_SDK)) {
       return;
     }
-
     let js = document.createElement('script');
     js.id = JS_SDK;
     js.src = '//connect.facebook.net/pt_BR/sdk.js';
     document.body.appendChild(js);
+  }
+
+  private unloadSdk() {
+    let js = document.getElementById(JS_SDK);
+    let root = document.getElementById('fb-root');
+    document.body.removeChild(js);
+    document.body.removeChild(root);
+    FB = null;
   }
 }

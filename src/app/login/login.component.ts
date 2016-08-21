@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FacebookService } from './facebook.service';
@@ -7,16 +7,22 @@ import { FacebookService } from './facebook.service';
   providers: [FacebookService],
   templateUrl: './login.component.html'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
   failed = false;
 
   constructor(
     private facebook: FacebookService,
     private router: Router
-  ) {
-    facebook.init({
+  ) { }
+
+  ngOnInit() {
+    this.facebook.init({
       appId: '675062689245409'
     });
+  }
+
+  ngOnDestroy() {
+    this.facebook.destroy();
   }
 
   login() {
