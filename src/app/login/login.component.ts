@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { FacebookService } from '../shared/facebook.service';
+import { FacebookService } from './facebook.service';
 
 @Component({
   providers: [FacebookService],
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
-  loggedIn = false;
-
   constructor(
-    private facebook: FacebookService
+    private facebook: FacebookService,
+    private router: Router
   ) {
     facebook.init({
       appId: '675062689245409'
@@ -19,14 +19,13 @@ export class LoginComponent {
 
   login() {
     this.facebook.login()
-      .loggedIn((uid, token) => {
-        console.log('Autenticou com sucesso!', uid, token);
-        this.loggedIn = true;
+      .onLoggedIn(() => {
+        this.router.navigate(['/']);
       })
-      .notAuthorized(() => {
+      .onNotAuthorized(() => {
         console.log('Aplicativo não autorizado!');
       })
-      .loggedOut(() => {
+      .onLoggedOut(() => {
         console.log('Não está logado no Facebook!');
       })
       .submit();
@@ -34,6 +33,5 @@ export class LoginComponent {
 
   logout() {
     this.facebook.logout();
-    this.loggedIn = false;
   }
 }

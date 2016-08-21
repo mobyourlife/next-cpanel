@@ -4,6 +4,10 @@
 @import 'login';
 @import "list-sites";
 
+body {
+    overflow-y: scroll;
+}
+
 main {
     padding: 2em 1em;
 }

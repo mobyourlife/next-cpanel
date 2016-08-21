@@ -10,6 +10,8 @@ import { AboutComponent } from './about/about.component';
 import { ApiService } from './shared';
 import { routing } from './app.routing';
 
+import { AuthGuard, FacebookService } from './login';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -24,7 +26,9 @@ import { routing } from './app.routing';
     AboutComponent
   ],
   providers: [
-    ApiService
+    AuthGuard,
+    FacebookService,
+    ApiService,
   ],
   bootstrap: [AppComponent]
 })

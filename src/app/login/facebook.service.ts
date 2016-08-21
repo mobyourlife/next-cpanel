@@ -3,25 +3,21 @@ import { Injectable } from '@angular/core';
 declare var FB: any;
 
 class LoginStatus {
-  public status: string;
-  public uid: number;
-  public token: string;
-
   private loggedInCallback: Function;
   private notAuthorizedCallback: Function;
   private loggedOutCallback: Function;
 
-  loggedIn(cb) {
+  onLoggedIn(cb) {
     this.loggedInCallback = cb;
     return this;
   }
 
-  notAuthorized(cb) {
+  onNotAuthorized(cb) {
     this.notAuthorizedCallback = cb;
     return this;
   }
 
-  loggedOut(cb) {
+  onLoggedOut(cb) {
     this.loggedOutCallback = cb;
     return this;
   }
@@ -31,31 +27,40 @@ class LoginStatus {
   }
 
   logout() {
-    FB.logout(this.checkLoginStatus.bind(this));
+    this.clearToken();
+  }
+
+  isLoggedIn() {
+    return localStorage.getItem('fb_token');
   }
 
   private handleStatus(response) {
-    this.status = response.status;
-
     switch(response.status) {
       case 'connected':
-        this.loggedInCallback(response.authResponse.userID, response.authResponse.accessToken);
+        localStorage.setItem('fb_uid', response.authResponse.userID);
+        localStorage.setItem('fb_token', response.authResponse.accessToken);
+        this.loggedInCallback();
         break;
       
       case 'not_authorized':
+        this.clearToken();
         this.notAuthorizedCallback();
         break;
       
       default:
+        this.clearToken();
         this.loggedOutCallback();
         break;
     }
   }
 
   private checkLoginStatus() {
-    FB.getLoginStatus(response => {
-      this.handleStatus(response);
-    });
+    FB.getLoginStatus(this.handleStatus.bind(this));
+  }
+
+  private clearToken() {
+    localStorage.removeItem('fb_uid');
+    localStorage.removeItem('fb_token');
   }
 }
 
@@ -79,6 +84,10 @@ export class FacebookService {
 
   logout() {
     return this.loginStatus.logout();
+  }
+
+  isLoggedIn() {
+    return this.loginStatus.isLoggedIn();
   }
 
   private initService() {

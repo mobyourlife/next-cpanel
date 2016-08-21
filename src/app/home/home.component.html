@@ -1,34 +1,28 @@
-<main class="container col-md-6 col-center">
-  <header class="text-center">
-    <img src="img/logo.png" alt="Mob Your Life">
-  </header>
+<div class="text-center">
+  <h2>Meus Sites</h2>
+  <p><a routerLink="/logout">Sair</a></p>
+  <p>
+    Nesta página eu posso ver quais sites eu tenho no Mob Your Life.<br/>
+    Também posso pedir para criar novos sites para mim.
+  </p>
+</div>
 
-  <div class="text-center">
-    <h2>Meus Sites</h2>
-    <p>
-      Nesta página eu posso ver quais sites eu tenho no Mob Your Life.<br/>
-      Também posso pedir para criar novos sites para mim.
-    </p>
+<div *ngFor="let i of sites"
+  class="well media">
+  <div class="media-left">
+    <img src="img/icon-box.png" alt="Site">
   </div>
-
-  <div *ngFor="let i of sites"
-    class="well media">
-    <div class="media-left">
-      <img src="img/icon-box.png" alt="Site">
-    </div>
-    <div class="media-body">
-      <p><strong>{{ i.title }}</strong></p>
-      <p>{{ i.description }}</p>
-    </div>
-    <div class="media-right">
-      <img src="img/icon-dots.png" alt="Opções">
-    </div>
+  <div class="media-body">
+    <p><strong>{{ i.title }}</strong></p>
+    <p>{{ i.description }}</p>
   </div>
-
-  <div class="text-right">
-    <button class="btn btn-lg btn-primary">
-      Criar novo site
-    </button>
+  <div class="media-right">
+    <img src="img/icon-dots.png" alt="Opções">
   </div>
+</div>
 
-</main>
+<div class="text-right">
+  <button class="btn btn-lg btn-primary">
+    Criar novo site
+  </button>
+</div>
