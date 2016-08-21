@@ -24,7 +24,9 @@ class LoginStatus {
   }
 
   submit() {
-    FB.login(this.handleStatus.bind(this));
+    FB.login(this.handleStatus.bind(this), {
+      scope: 'public_profile, email, manage_pages'
+    });
   }
 
   logout() {
