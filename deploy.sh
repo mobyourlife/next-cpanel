@@ -1,14 +1,21 @@
 #!/bin/sh
 
-docker rmi -f mob-cpanel
-docker build -t mob-cpanel .
+REPO_HASH=$(git rev-parse HEAD)
+REPO_SHORT=${REPO_HASH:0:7}
+IMG_NAME=mob-cpanel
+IMG_VERSION=$IMG_NAME-$REPO_SHORT
 
-docker rm -f mob-cpanel
+docker build -t $IMG_VERSION .
+
+docker ps -a | grep $IMG_NAME | awk '{print $1}' | xargs docker rm -f
+> /dev/null 2>&1
 
 docker run  \
-  --name mob-cpanel \
+  --name $IMG_VERSION \
   --restart=always \
-  -v `pwd`/dist:/usr/share/nginx/html:ro \
   -p 4000:80 \
   -d \
-  nginx@stable
+  $IMG_VERSION
+
+docker ps -a | grep $IMG_NAME | grep -v $IMG_VERSION | awk '{print $1}' | xargs docker rmi -f
+> /dev/null 2>&1
