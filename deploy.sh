@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 REPO_HASH=$(git rev-parse HEAD)
 REPO_SHORT=${REPO_HASH:0:7}
