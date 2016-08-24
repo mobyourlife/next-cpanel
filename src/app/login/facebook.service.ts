@@ -30,28 +30,20 @@ class LoginStatus {
   }
 
   logout() {
-    this.clearToken();
-  }
-
-  isLoggedIn() {
-    return localStorage.getItem('fb_token');
+    // FB.logout
   }
 
   private handleStatus(response) {
     switch(response.status) {
       case 'connected':
-        localStorage.setItem('fb_uid', response.authResponse.userID);
-        localStorage.setItem('fb_token', response.authResponse.accessToken);
-        this.loggedInCallback();
+        this.loggedInCallback(response.authResponse.userID, response.authResponse.accessToken);
         break;
       
       case 'not_authorized':
-        this.clearToken();
         this.notAuthorizedCallback();
         break;
       
       default:
-        this.clearToken();
         this.loggedOutCallback();
         break;
     }
@@ -59,11 +51,6 @@ class LoginStatus {
 
   private checkLoginStatus() {
     FB.getLoginStatus(this.handleStatus.bind(this));
-  }
-
-  private clearToken() {
-    localStorage.removeItem('fb_uid');
-    localStorage.removeItem('fb_token');
   }
 }
 
@@ -91,10 +78,6 @@ export class FacebookService {
 
   logout() {
     return this.loginStatus.logout();
-  }
-
-  isLoggedIn() {
-    return this.loginStatus.isLoggedIn();
   }
 
   private initService() {

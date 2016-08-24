@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FacebookService } from './facebook.service';
+import { AuthService } from './auth.service';
 
 @Component({
   providers: [FacebookService],
@@ -9,9 +10,11 @@ import { FacebookService } from './facebook.service';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   failed = false;
+  wait = false;
 
   constructor(
     private facebook: FacebookService,
+    private auth: AuthService,
     private router: Router
   ) { }
 
@@ -27,9 +30,18 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login() {
     this.facebook.login()
-      .onLoggedIn(() => {
+      .onLoggedIn((fb_uid, access_token) => {
         this.failed = false;
-        this.router.navigate(['/']);
+        this.wait = true;
+        this.auth.login(fb_uid, access_token)
+          .subscribe(ok => {
+            if (ok) {
+              this.router.navigate(['/']);
+            } else {
+              this.wait = false;
+              this.failed = true;
+            }
+          });
       })
       .onNotAuthorized(() => {
         this.failed = true;
@@ -38,9 +50,5 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.failed = true;
       })
       .submit();
-  }
-
-  logout() {
-    this.facebook.logout();
   }
 }
