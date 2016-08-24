@@ -13,9 +13,11 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
  * Env
  * Get npm lifecycle event to identify the environment
  */
-var ENV = process.env.npm_lifecycle_event;
-var isTest = ENV === 'test' || ENV === 'test-watch';
-var isProd = ENV === 'build';
+var NPM_EV = process.env.npm_lifecycle_event;
+var isTest = NPM_EV === 'test' || NPM_EV === 'test-watch';
+var isProd = NPM_EV === 'build';
+
+var NODE_ENV = process.env.NODE_ENV || 'develop';
 
 module.exports = function makeWebpackConfig() {
   /**
@@ -157,7 +159,7 @@ module.exports = function makeWebpackConfig() {
     new webpack.DefinePlugin({
       // Environment helpers
       'process.env': {
-        ENV: JSON.stringify(ENV)
+        ENV: JSON.stringify(NODE_ENV)
       }
     })
   ];

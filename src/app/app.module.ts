@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, provide } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +10,9 @@ import { AboutComponent } from './about/about.component';
 import { ApiService } from './shared';
 import { routing } from './app.routing';
 
-import { AuthGuard, FacebookService } from './login';
+import { AuthGuard, AuthService } from './login';
+
+import { ENV_CONFIG } from './config';
 
 @NgModule({
   imports: [
@@ -27,8 +29,9 @@ import { AuthGuard, FacebookService } from './login';
   ],
   providers: [
     AuthGuard,
-    FacebookService,
+    AuthService,
     ApiService,
+    provide('app.config', { useValue: ENV_CONFIG }),
   ],
   bootstrap: [AppComponent]
 })
