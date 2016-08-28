@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 
 import { AppConfig } from './app-config.model';
 
+const JWT_TOKEN_NAME = 'jwt_token';
+
 @Injectable()
 export class ApiService {
   title = 'Mob Your Life';
@@ -16,7 +18,8 @@ export class ApiService {
   get<T>(endpoint: string): Observable<T> {
     let url = this.transformUrl(endpoint);
     let options = {
-      headers: this.bakeHeaders()
+      headers: this.bakeHeaders(),
+      body: ''
     };
     return this.http.get(url, options).map(i => <T>i.json());
   }
@@ -35,9 +38,15 @@ export class ApiService {
   }
 
   private bakeHeaders(): Headers {
-    let ret = new Headers({
+    let headers = {
       'Content-Type': 'application/json'
-    });
-    return ret;
+    };
+
+    const token = localStorage.getItem(JWT_TOKEN_NAME);
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    return new Headers(headers);
   }
 }
