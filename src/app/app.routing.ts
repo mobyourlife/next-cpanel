@@ -5,7 +5,7 @@ import { AuthGuard, LoginComponent, LogoutComponent } from './login';
 
 import { NotFoundComponent } from './error';
 
-import { HomeComponent } from './home';
+import { HomeComponent, CriarNovoSiteComponent } from './home';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,6 +13,7 @@ const routes: Routes = [
   {
     children: [
       { path: '', component: HomeComponent },
+      { path: 'criar-novo-site', component: CriarNovoSiteComponent },
     ],
 
     canActivate: [AuthGuard],

@@ -17,10 +17,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     console.log('Hello Home');
-    this.refreshPages();
+    this.refreshSites();
   }
 
-  private refreshPages() {
+  private refreshSites() {
     this.zone.run(() => {
       this.api.get<any>('users/me/sites')
         .subscribe(data => {
