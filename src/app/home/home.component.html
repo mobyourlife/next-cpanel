@@ -7,6 +7,10 @@
   </p>
 </div>
 
+<div *ngIf="!pages || !pages.length" class="text-center">
+  <img src="img/spinner.gif" alt="Aguarde, carregando...">
+</div>
+
 <div *ngFor="let i of pages"
   class="well media">
   <div class="media-left">
