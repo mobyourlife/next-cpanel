@@ -1,43 +1,56 @@
-<div class="text-center">
-  <h2>Criar novo site</h2>
-  <p *ngIf="pages && pages.length">
-    Selecione uma página para criar o seu novo site.
-  </p>
-</div>
+<div *ngIf="!creating">
+  <div class="text-center">
+    <h2>Criar novo site</h2>
+    <p *ngIf="pages && pages.length">
+      Selecione uma página para criar o seu novo site.
+    </p>
+  </div>
 
-<div *ngIf="!pages" class="text-center">
-  <p><img src="img/spinner.gif" alt="Aguarde, carregando..."></p>
-  <p>Carregando suas páginas...</p>
-</div>
+  <div *ngIf="!pages" class="text-center">
+    <p><img src="img/spinner.gif" alt="Aguarde, carregando..."></p>
+    <p>Carregando suas páginas...</p>
+  </div>
 
-<div *ngIf="pages && !pages.length" class="text-center">
-  <h3>Antes de tudo...</h3>
-  <p><a href="https://www.facebook.com/pages/create/" target="_blank" rel="noopener">Clique aqui</a> para criar uma página no Facebook.</p>
-  <p>Em seguida, retorne para esta página e pressione o botão abaixo.</p>
-  <p>
-    <button (click)="refreshPages()" class="btn btn-lg btn-success">
-      Pronto, já criei minha página!
+  <div *ngIf="pages && !pages.length" class="text-center">
+    <h3>Antes de tudo...</h3>
+    <p><a href="https://www.facebook.com/pages/create/" target="_blank" rel="noopener">Clique aqui</a> para criar uma página no Facebook.</p>
+    <p>Em seguida, retorne para esta página e pressione o botão abaixo.</p>
+    <p>
+      <button (click)="refreshPages()" class="btn btn-lg btn-success">
+        Pronto, já criei minha página!
+      </button>
+    </p>
+  </div>
+
+  <div *ngFor="let i of pages | filterPages:selected"
+    (click)="selectPage(i)"
+    class="well media clickable">
+    <div class="media-left">
+      <img src="img/icon-box.png" alt="Site">
+    </div>
+    <div class="media-body">
+      <p><strong>{{ i.name }}</strong></p>
+      <p>{{ i.about }}</p>
+    </div>
+  </div>
+
+  <div class="text-right" *ngIf="selected">
+    <button (click)="createSite()" class="btn btn-lg btn-success">
+      Criar site gratuito
     </button>
-  </p>
+    <button (click)="deselectPage()" class="btn btn-lg btn-default">
+      Alterar página
+    </button>
+  </div>
 </div>
 
-<div *ngFor="let i of pages | filterPages:selected"
-  (click)="selectPage(i)"
-  class="well media clickable">
-  <div class="media-left">
+<div *ngIf="creating" class="text-center">
+  <p>
     <img src="img/icon-box.png" alt="Site">
-  </div>
-  <div class="media-body">
-    <p><strong>{{ i.name }}</strong></p>
-    <p>{{ i.about }}</p>
-  </div>
-</div>
+  </p>
+  <p><strong>{{ selected.name }}</strong></p>
 
-<div class="text-right" *ngIf="selected">
-  <a routerLink="/criar-novo-site" class="btn btn-lg btn-success">
-    Criar novo site
-  </a>
-  <button (click)="deselectPage()" class="btn btn-lg btn-default">
-    Alterar página
-  </button>
+  <h3>Aguarde um instante...</h3>
+  <p><img src="img/spinner.gif" alt="Aguarde, carregando..."></p>
+  <p>Estamos criando o seu novo site...</p>
 </div>
