@@ -1,24 +1,29 @@
 <div class="text-center">
   <h2>Meus Sites</h2>
   <p><a routerLink="/logout">Sair</a></p>
-  <p>
+  <p *ngIf="sites && sites.length">
     Nesta página eu posso ver quais sites eu tenho no Mob Your Life.<br/>
     Também posso pedir para criar novos sites para mim.
   </p>
 </div>
 
-<div *ngIf="!pages || !pages.length" class="text-center">
+<div *ngIf="!sites" class="text-center">
   <img src="img/spinner.gif" alt="Aguarde, carregando...">
 </div>
 
-<div *ngFor="let i of pages"
+<div *ngIf="sites && !sites.length" class="text-center">
+  <h3>Oba, é a sua primeira vez aqui?</h3>
+  <p>Pressione o botão abaixo para criar o seu primeiro site.</p>
+</div>
+
+<div *ngFor="let i of sites"
   class="well media">
   <div class="media-left">
     <img src="img/icon-box.png" alt="Site">
   </div>
   <div class="media-body">
     <p><strong>{{ i.name }}</strong></p>
-    <p>{{ i.about }}</p>
+    <p>{{ i.descriptionabout }}</p>
   </div>
   <div class="media-right">
     <img src="img/icon-dots.png" alt="Opções">

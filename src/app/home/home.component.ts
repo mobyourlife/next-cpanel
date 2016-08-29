@@ -1,14 +1,14 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 
 import { ApiService } from '../shared/api.service';
-import { Page } from './page.model';
+import { Site } from './site.model';
 
 @Component({
   selector: 'my-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  pages: Page[];
+  sites: Site[];
 
   constructor(
     private api: ApiService,
@@ -22,10 +22,9 @@ export class HomeComponent implements OnInit {
 
   private refreshPages() {
     this.zone.run(() => {
-      this.api.get<any>('users/me/pages')
+      this.api.get<any>('users/me/sites')
         .subscribe(data => {
-          this.pages = data;
-          console.log(this.pages);
+          this.sites = data;
         });
     });
   }
