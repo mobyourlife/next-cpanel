@@ -1,0 +1,12 @@
+{
+  "name": "mob-cpanel",
+  "version": "4.1.0",
+  "description": "Aplicação web utilizada para gerenciamento negocial do Mob Your Life.",
+  "main": "main.jsx",
+  "repository": {
+    "url": "git@bitbucket.org:mobyourlife/cpanel.git",
+    "type": "git"
+  },
+  "author": "Filipe Oliveira <contato@fmoliveira.com.br>",
+  "license": "Apache-2.0"
+}
