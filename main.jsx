@@ -4,7 +4,7 @@ import { AppContainer } from 'react-hot-loader'
 import { Router, Route, Redirect, browserHistory } from 'react-router'
 
 import App from './src/App'
-import { AccountLogin } from './src/Account'
+import { AccountLogin, AccountLogout, isLoggedIn } from './src/Account'
 import { DashboardHome } from './src/Dashboard'
 
 if (module.hot) {
@@ -19,11 +19,16 @@ ReactDOM.render(
         <Route path='Dashboard' component={DashboardHome} />
       </Route>
       <Route path='/Login' component={AccountLogin} />
+      <Route path='/Logout' component={AccountLogout} />
     </Router>
   </AppContainer>,
   document.getElementById('app')
 )
 
 function requireAuth (nextState, replace, callback) {
-  browserHistory.replace('/Login')
+  if (isLoggedIn()) {
+    callback()
+  } else {
+    browserHistory.replace('/Login')
+  }
 }

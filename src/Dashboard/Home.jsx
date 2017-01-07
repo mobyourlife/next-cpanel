@@ -12,7 +12,7 @@ export class DashboardHome extends React.Component {
   }
 
   componentDidMount() {
-    get('/sites').then(res => this.setState({
+    get('/users/me/sites').then(res => this.setState({
       loading: false,
       sites: res.sites
     }))

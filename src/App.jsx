@@ -23,6 +23,9 @@ export default class App extends React.Component {
               <ul className='nav navbar-nav'>
                 <NavLink to={'/Dashboard'}>Dashboard</NavLink>
               </ul>
+              <ul className='nav navbar-nav navbar-right'>
+                <NavLink to={'/Logout'}>Sair</NavLink>
+              </ul>
             </div>
           </div>
         </nav>
