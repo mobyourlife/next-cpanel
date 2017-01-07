@@ -26,8 +26,8 @@ export class DashboardHome extends React.Component {
         <div className='jumbotron'>
           <div className='container'>
             <h1>Dashboard</h1>
-            <p>Aqui você tem controle fácil sobre os seus sites</p>
-            <button type='button' className='btn btn-primary'>Criar novo site</button>
+            <p>Aqui você tem controle fácil sobre os seus sites.</p>
+            <button type='button' className='btn btn-lg btn-primary'>Criar novo site</button>
           </div>
         </div>
         <div className='container'>

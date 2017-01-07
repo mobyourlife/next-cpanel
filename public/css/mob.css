@@ -1,0 +1,18 @@
+.navbar-brand > img {
+  margin-top: -8px;
+}
+
+.jumbotron {
+  background-image: url('/img/hero.jpg');
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #f58634;
+  border-color: #db762e;
+}
+
+.btn-primary:hover {
+  background-color: #f5761b;
+  border-color: #db6918;
+}

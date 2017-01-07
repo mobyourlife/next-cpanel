@@ -15,7 +15,9 @@ export default class App extends React.Component {
                 <span className='icon-bar' />
                 <span className='icon-bar' />
               </button>
-              <a className='navbar-brand' href='#'>Mob Your Life</a>
+              <a className='navbar-brand' href='#'>
+                <img src='/img/logo.png' alt='Mob Your Life' />
+              </a>
             </div>
             <div id='navbar' className='navbar-collapse collapse'>
               <ul className='nav navbar-nav'>
