@@ -49,6 +49,11 @@ module.exports = (function makeWebpackConfig () {
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify(NODE_ENV)
+        }
+      }),
       new HtmlWebpackPlugin({
         template: './public/index.html',
         chunksSortMode: 'dependency'
