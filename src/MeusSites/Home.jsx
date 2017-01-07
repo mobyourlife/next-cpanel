@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 import { get } from '../Api'
 
@@ -12,9 +13,9 @@ export class MeusSitesHome extends React.Component {
   }
 
   componentDidMount() {
-    get('/users/me/sites').then(res => this.setState({
+    get('/users/me/sites').then(sites => this.setState({
       loading: false,
-      sites: res.sites
+      sites
     }))
   }
 
@@ -27,7 +28,9 @@ export class MeusSitesHome extends React.Component {
           <div className='container'>
             <h1>Meus Sites</h1>
             <p>Aqui você tem controle fácil sobre os seus sites.</p>
-            <button type='button' className='btn btn-lg btn-primary'>Criar novo site</button>
+            <Link to={'/Meus-Sites/Novo'} className='btn btn-lg btn-primary'>
+              Criar novo site
+            </Link>
           </div>
         </div>
         <div className='container'>

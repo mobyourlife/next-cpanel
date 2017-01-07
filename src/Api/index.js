@@ -1,17 +1,20 @@
 import 'whatwg-fetch'
 
+import { getToken } from '../Account'
+
 const url = getEnvironmentUrl()
 
 export function get(method) {
-  return fetch(url + method).then(res => res.json())
+  return fetch(url + method, {
+    method: 'GET',
+    headers: makeHeaders()
+  }).then(res => res.json())
 }
 
 export function post(method, data) {
   return fetch(url + method, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: makeHeaders(),
     body: JSON.stringify(data || '')
   })
   .then(res => res.json())
@@ -25,4 +28,16 @@ function getEnvironmentUrl() {
     default:
       return 'http://localhost:4000'
   }
+}
+
+function makeHeaders() {
+  let headers = {}
+  headers['Content-Type'] = 'application/json'
+
+  const token = getToken()
+  if (!!token) {
+    headers['Authorization'] = 'Bearer ' + token
+  }
+
+  return headers
 }
