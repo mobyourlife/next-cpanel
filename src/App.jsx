@@ -24,7 +24,7 @@ export default class App extends React.Component {
             </div>
           </div>
         </nav>
-        <div className='container'>
+        <div>
           {this.props.children}
         </div>
       </div>
