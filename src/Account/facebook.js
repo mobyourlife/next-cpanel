@@ -1,3 +1,5 @@
+/* global localStorage */
+
 import { browserHistory } from 'react-router'
 
 const JWT_TOKEN_ID = 'JWT_TOKEN'

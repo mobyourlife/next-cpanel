@@ -4,7 +4,7 @@ import { Link } from 'react-router'
 import { get } from '../Api'
 
 export class MeusSitesHome extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       loading: true,
@@ -12,7 +12,7 @@ export class MeusSitesHome extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     get('/users/me/sites').then(sites => this.setState({
       loading: false,
       sites

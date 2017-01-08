@@ -3,7 +3,7 @@ import React from 'react'
 import { get } from '../Api'
 
 export class MeusSitesNovo extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       loading: true,
@@ -11,7 +11,7 @@ export class MeusSitesNovo extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     get('/users/me/pages').then(pages => this.setState({
       loading: false,
       pages

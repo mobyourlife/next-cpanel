@@ -1,3 +1,5 @@
+/* global FB */
+
 import React from 'react'
 import FaFacebook from 'react-icons/lib/fa/facebook'
 
@@ -7,7 +9,7 @@ import { storeToken } from './facebook'
 const JS_SDK_ID = 'facebook-js-sdk'
 
 export class AccountLogin extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       connected: false,
@@ -111,21 +113,20 @@ export class AccountLogin extends React.Component {
 
   loadSdk () {
     if (document.getElementById(JS_SDK_ID)) {
-      return;
+      return
     }
 
-    let js = document.createElement('script');
-    js.id = JS_SDK_ID;
-    js.src = 'https://connect.facebook.net/pt_BR/sdk.js';
-    document.body.appendChild(js);
+    let js = document.createElement('script')
+    js.id = JS_SDK_ID
+    js.src = 'https://connect.facebook.net/pt_BR/sdk.js'
+    document.body.appendChild(js)
   }
 
   unloadSdk () {
-    let js = document.getElementById(JS_SDK_ID);
-    let root = document.getElementById('fb-root');
-    document.body.removeChild(js);
-    document.body.removeChild(root);
-    FB = null;
+    let js = document.getElementById(JS_SDK_ID)
+    let root = document.getElementById('fb-root')
+    document.body.removeChild(js)
+    document.body.removeChild(root)
   }
 
   setupSdk () {
