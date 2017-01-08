@@ -11,7 +11,8 @@ export class AccountLogin extends React.Component {
     super(props)
     this.state = {
       connected: false,
-      notAuthorized: false
+      notAuthorized: false,
+      failed: false
     }
   }
 
@@ -48,6 +49,15 @@ export class AccountLogin extends React.Component {
           <p>Clique novamente no botão abaixo para entrar utilizando a sua conta do Facebook.</p>
         </div>
       )
+    } else if (this.state.failed) {
+      loginText = (
+        <div>
+          <div className='alert alert-danger'>
+            <p>Oops! Algo deu errado ao tentar entrar com a sua conta do Facebook. Por favor tente novamente.</p>
+          </div>
+          <p>Clique no botão abaixo para tentar entrar novamente utilizando a sua conta do Facebook.</p>
+        </div>
+      )
     }
 
     return (
@@ -66,7 +76,8 @@ export class AccountLogin extends React.Component {
   login () {
     this.setState({
       connected: false,
-      notAuthorized: false
+      notAuthorized: false,
+      failed: false
     })
 
     FB.login(this.handleStatus.bind(this), {
@@ -84,6 +95,8 @@ export class AccountLogin extends React.Component {
         .then(res => {
           this.setState({connected: true})
           storeToken(res.id_token)
+        }, err => {
+          this.setState({failed: true})
         })
         break
 
