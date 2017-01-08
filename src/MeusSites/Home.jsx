@@ -29,7 +29,7 @@ export class MeusSitesHome extends React.Component {
             <h1>Meus Sites</h1>
             <p>Aqui você tem controle fácil sobre os seus sites.</p>
             <Link to={'/Meus-Sites/Novo'} className='btn btn-lg btn-primary'>
-              Criar novo site
+              Criar Novo Site
             </Link>
           </div>
         </div>
