@@ -123,10 +123,15 @@ export class AccountLogin extends React.Component {
   }
 
   unloadSdk () {
-    let js = document.getElementById(JS_SDK_ID)
-    let root = document.getElementById('fb-root')
-    document.body.removeChild(js)
-    document.body.removeChild(root)
+    this.tryRemoveElement(JS_SDK_ID)
+    this.tryRemoveElement('fb-root')
+  }
+
+  tryRemoveElement(id) {
+    const el = document.getElementById(id)
+    if (el) {
+      document.body.removeChild(el)
+    }
   }
 
   setupSdk () {
