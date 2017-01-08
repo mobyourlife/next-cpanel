@@ -43,7 +43,7 @@ export class MeusSitesNovo extends React.Component {
       return <p>Você não tem nenhuma página. <a href='https://www.facebook.com/pages/create/' target='_blank'>Clique aqui</a> para criar uma página em seu Facebook e depois atualize esta página.</p>
     } else {
       const list = this.state.pages.map(i => (
-        <a className='list-group-item'>
+        <a key={i.account_id} className='list-group-item'>
           {i.name}
         </a>
       ))

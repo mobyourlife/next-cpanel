@@ -47,7 +47,7 @@ export class MeusSitesHome extends React.Component {
       return <p>Você ainda não tem nenhum site. Crie o seu primeiro agora e teste grátis por 15 dias!</p>
     } else {
       const list = this.state.sites.map(i => (
-        <a className='list-group-item'>
+        <a key={i.account_id} className='list-group-item'>
           {i.name}
         </a>
       ))
