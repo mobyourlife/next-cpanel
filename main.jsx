@@ -21,8 +21,8 @@ ReactDOM.render(
           <Route path='Novo' component={MeusSitesNovo} />
         </Route>
       </Route>
-      <Route path='/Login' component={AccountLogin} />
-      <Route path='/Logout' component={AccountLogout} />
+      <Route path='/Entrar' component={AccountLogin} />
+      <Route path='/Sair' component={AccountLogout} />
     </Router>
   </AppContainer>,
   document.getElementById('app')
@@ -32,6 +32,6 @@ function requireAuth (nextState, replace, callback) {
   if (isLoggedIn()) {
     callback()
   } else {
-    browserHistory.replace('/Login')
+    browserHistory.replace('/Entrar')
   }
 }

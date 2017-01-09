@@ -66,10 +66,13 @@ export class AccountLogin extends React.Component {
       <div className='container text-center'>
         <header>
           <img src='/img/logo-square.png' alt='Mob Your Life' />
-          <h1>Login</h1>
+          <h1>Seja bem-vindo!</h1>
         </header>
 
-        {loginText}
+        <div style={{marginTop: 30, marginBottom: 30}}>
+          {loginText}
+        </div>
+
         {loginButton}
       </div>
     )

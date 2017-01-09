@@ -24,7 +24,7 @@ export default class App extends React.Component {
                 <NavLink to={'/Meus-Sites'}>Meus Sites</NavLink>
               </ul>
               <ul className='nav navbar-nav navbar-right'>
-                <NavLink to={'/Logout'}>Sair</NavLink>
+                <NavLink to={'/Sair'}>Sair</NavLink>
               </ul>
             </div>
           </div>
