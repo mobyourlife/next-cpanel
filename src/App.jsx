@@ -4,6 +4,8 @@ import NavLink from './NavLink'
 
 export default class App extends React.Component {
   render () {
+    const year = new Date().getFullYear()
+
     return (
       <div>
         <nav className='navbar navbar-default navbar-fixed-top'>
@@ -31,6 +33,12 @@ export default class App extends React.Component {
         </nav>
         <div>
           {this.props.children}
+        </div>
+        <div className='container' style={{marginTop: 50}}>
+          <hr/>
+          <footer className='text-center' style={{marginBottom: 10}}>
+            Mob Your Life<sup>&copy;</sup> 2013-{year}
+          </footer>
         </div>
       </div>
     )
