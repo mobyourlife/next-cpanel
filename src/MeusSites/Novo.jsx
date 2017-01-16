@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 import { get } from '../Api'
 
@@ -55,9 +56,9 @@ export class MeusSitesNovo extends React.Component {
       )
     } else {
       const list = this.state.pages.map(i => (
-        <a key={i.account_id} className='list-group-item'>
+        <Link to={'/Meus-Sites/Novo/' + i.account_id} className='list-group-item'>
           {i.name}
-        </a>
+        </Link>
       ))
 
       return <div className='list-group'>{list}</div>
