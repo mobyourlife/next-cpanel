@@ -44,7 +44,17 @@ export class MeusSitesHome extends React.Component {
     if (this.state.loading) {
       return <p>Aguarde, carregando...</p>
     } else if (!this.state.sites || !this.state.sites.length) {
-      return <p>Você ainda não tem nenhum site. Crie o seu primeiro agora e teste grátis por 15 dias!</p>
+      return (
+        <div className='text-center'>
+          <h2>Seja bem-vindo!</h2>
+          <h4>Clique no botão abaixo para criar o seu primeiro site! :)</h4>
+          <p>
+            <Link to={'/Meus-Sites/Novo'} className='btn btn-lg btn-primary'>
+              Criar Meu Primeiro Site
+            </Link>
+          </p>
+        </div>
+      )
     } else {
       const list = this.state.sites.map(i => (
         <a key={i.account_id} className='list-group-item'>
