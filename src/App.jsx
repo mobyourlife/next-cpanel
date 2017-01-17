@@ -8,7 +8,7 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <nav className='navbar navbar-inverse navbar-fixed-top'>
+        <nav className='navbar navbar-inverse navbar-mob navbar-fixed-top'>
           <div className='container-fluid'>
             <div className='navbar-header'>
               <button type='button' className='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
@@ -18,7 +18,7 @@ export default class App extends React.Component {
                 <span className='icon-bar'></span>
               </button>
               <a className='navbar-brand' href='#'>
-                <img src='/img/logo.png' alt='Mob Your Life' />
+                <img src='/img/logo-white.png' alt='Mob Your Life' />
               </a>
             </div>
             <div id='navbar' className='navbar-collapse collapse'>
