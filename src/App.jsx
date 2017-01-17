@@ -23,8 +23,9 @@ export default class App extends React.Component {
             </div>
             <div id='navbar' className='navbar-collapse collapse'>
               <ul className='nav navbar-nav navbar-right'>
-                <li><a href='#'>Perfil</a></li>
-                <li><a href='#'>Ajuda</a></li>
+                <NavLink to={'/Perfil'}>Perfil</NavLink>
+                <NavLink to={'/Ajuda'}>Ajuda</NavLink>
+                <NavLink to={'/Sair'}>Sair</NavLink>
               </ul>
             </div>
           </div>
