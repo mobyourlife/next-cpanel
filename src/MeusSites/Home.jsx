@@ -24,18 +24,8 @@ export class MeusSitesHome extends React.Component {
 
     return (
       <div>
-        <div className='jumbotron'>
-          <div className='container'>
-            <h1>Meus Sites</h1>
-            <p>Aqui você tem controle fácil sobre os seus sites.</p>
-            <Link to={'/Meus-Sites/Novo'} className='btn btn-lg btn-primary'>
-              Criar Novo Site
-            </Link>
-          </div>
-        </div>
-        <div className='container'>
-          {sites}
-        </div>
+        <h1>Meus Sites</h1>
+        {sites}
       </div>
     )
   }

@@ -24,15 +24,8 @@ export class MeusSitesNovo extends React.Component {
 
     return (
       <div>
-        <div className='jumbotron'>
-          <div className='container'>
-            <h1>Criar Novo Site</h1>
-            <p>Clique abaixo na página desejada.</p>
-          </div>
-        </div>
-        <div className='container'>
-          {pages}
-        </div>
+        <h1>Criar Novo Site</h1>
+        {pages}
       </div>
     )
   }
