@@ -38,7 +38,12 @@ export class MeusSitesHome extends React.Component {
 
   renderSites () {
     if (this.state.loading) {
-      return <p>Aguarde, carregando...</p>
+      return (
+        <div className='text-center'>
+          <p><img src={'/img/loading.gif'} alt='Carregando' /></p>
+          <h4>Aguarde, carregando...</h4>
+        </div>
+      )
     } else if (!this.state.sites || !this.state.sites.length) {
       return (
         <div className='text-center'>

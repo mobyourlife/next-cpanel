@@ -99,7 +99,7 @@ export class AccountLogin extends React.Component {
         })
         .then(res => {
           this.setState({connected: true})
-          storeToken(res.id_token)
+          storeToken(res.id_token, res.user)
         }, err => {
           this.setState({failed: true})
         })

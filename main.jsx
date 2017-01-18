@@ -5,7 +5,7 @@ import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-route
 
 import App from './src/App'
 import { AccountLogin, AccountLogout, isLoggedIn } from './src/Account'
-import { MeusSites, MeusSitesHome, MeusSitesNovo } from './src/MeusSites'
+import { MeusSites, MeusSitesHome, MeusSitesNovo, MeusSitesGerenciar } from './src/MeusSites'
 
 if (module.hot) {
   module.hot.accept()
@@ -19,6 +19,7 @@ ReactDOM.render(
         <Route path='Meus-Sites' component={MeusSites}>
           <IndexRoute component={MeusSitesHome} />
           <Route path='Novo' component={MeusSitesNovo} />
+          <Route path='Gerenciar/:id' component={MeusSitesGerenciar} />
         </Route>
       </Route>
       <Route path='/Entrar' component={AccountLogin} />

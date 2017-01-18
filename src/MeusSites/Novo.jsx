@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 
-import { get } from '../Api'
+import { get, post } from '../Api'
+import { getUser } from '../Account/facebook'
 
 export class MeusSitesNovo extends React.Component {
   constructor (props) {
@@ -35,9 +36,21 @@ export class MeusSitesNovo extends React.Component {
     )
   }
 
+  createWebsite (account_id) {
+    const user = getUser()
+    post('/sites', {fb_uid: user.fb_uid, account_id}).then(fb_account_id => {
+      browserHistory.replace('/Meus-Sites/Gerenciar/' + fb_account_id)
+    })
+  }
+
   renderPages () {
     if (this.state.loading) {
-      return <p>Aguarde, carregando...</p>
+      return (
+        <div className='text-center'>
+          <p><img src={'/img/loading.gif'} alt='Carregando' /></p>
+          <h4>Aguarde, carregando...</h4>
+        </div>
+      )
     } else if (!this.state.pages || !this.state.pages.length) {
       return (
         <div className='text-center'>
@@ -54,11 +67,11 @@ export class MeusSitesNovo extends React.Component {
       )
     } else {
       const list = this.state.pages.map(i => (
-        <div className='col-md-6'>
-          <Link to={'/Meus-Sites/Novo/' + i.account_id} className='row-list-item'>
+        <div key={i.account_id} className='col-md-6'>
+          <a onClick={() => this.createWebsite(i.account_id)} className='row-list-item'>
             <img src={i.picture} alt={i.name} style={{width: 50, height: 50, marginRight: 20}} />
             {i.name}
-          </Link>
+          </a>
         </div>
       ))
 
