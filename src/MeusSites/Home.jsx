@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 
+import FaPlus from 'react-icons/lib/fa/plus'
+
 import { get } from '../Api'
 
 export class MeusSitesHome extends React.Component {
@@ -40,8 +42,9 @@ export class MeusSitesHome extends React.Component {
     } else if (!this.state.sites || !this.state.sites.length) {
       return (
         <div className='text-center'>
-          <h2>Seja bem-vindo!</h2>
-          <h4>Clique no botão abaixo para criar o seu primeiro site! :)</h4>
+          <img src={'/img/sad.png'} alt='Que triste!' />
+          <h3>Você ainda não tem um site, mas é bem fácil resolver isto.</h3>
+          <h4>Clique no botão abaixo para começar.</h4>
           <p>
             <Link to={'/Meus-Sites/Novo'} className='btn btn-lg btn-primary'>
               Criar Meu Primeiro Site
@@ -51,12 +54,25 @@ export class MeusSitesHome extends React.Component {
       )
     } else {
       const list = this.state.sites.map(i => (
-        <a key={i.account_id} className='list-group-item'>
-          {i.name}
-        </a>
+        <div className='col-md-6'>
+          <Link to={'/Meus-Sites/Gerenciar/' + i.id} className='row-list-item'>
+            <img src={i.picture} alt={i.name} style={{width: 50, height: 50, marginRight: 20}} />
+            {i.name}
+          </Link>
+        </div>
       ))
 
-      return <div className='list-group'>{list}</div>
+      return (
+        <div>
+          <div className='row'>{list}</div>
+          <p className='text-right'>
+            <Link to={'/Meus-Sites/Novo'} className='btn btn-lg btn-primary'>
+              <FaPlus style={{marginRight: 10}} />
+              Criar Novo Site
+            </Link>
+          </p>
+        </div>
+      )
     }
   }
 }

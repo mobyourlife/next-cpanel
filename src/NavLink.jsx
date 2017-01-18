@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 class NavLink extends React.Component {
   render () {
-    const isActive = this.context.router.isActive(this.props.to, true)
+    const isActive = this.context.router.isActive(this.props.to, false)
     const className = isActive ? 'active' : ''
 
     return (

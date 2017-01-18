@@ -24,9 +24,19 @@ body {
   margin-top: -8px;
 }
 
-.jumbotron {
-  background-color: #0086bf;
-  color: #fff;
+.row-list-item {
+  display: block;
+  margin-bottom: 1em;
+  padding: 1px 1em;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.row-list-item:hover {
+  background-color: #0086bf !important;
+  color: #fff !important;
+  text-decoration: none;
 }
 
 .login-container > .btn > svg {

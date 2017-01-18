@@ -54,12 +54,22 @@ export class MeusSitesNovo extends React.Component {
       )
     } else {
       const list = this.state.pages.map(i => (
-        <Link to={'/Meus-Sites/Novo/' + i.account_id} className='list-group-item'>
-          {i.name}
-        </Link>
+        <div className='col-md-6'>
+          <Link to={'/Meus-Sites/Novo/' + i.account_id} className='row-list-item'>
+            <img src={i.picture} alt={i.name} style={{width: 50, height: 50, marginRight: 20}} />
+            {i.name}
+          </Link>
+        </div>
       ))
 
-      return <div className='list-group'>{list}</div>
+      return (
+        <div>
+          <div className='alert alert-info'>
+            Estas são as suas páginas do Facebook. Clique sobre a página para qual você deseja criar um novo site.
+          </div>
+          <div className='row'>{list}</div>
+        </div>
+      )
     }
   }
 }
