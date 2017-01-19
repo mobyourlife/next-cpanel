@@ -64,6 +64,21 @@ export class MeusSitesGerenciar extends React.Component {
               style={{width: 50, height: 50, marginRight: 20}} />
             {this.state.site.name}
           </h3>
+          <h4>Detalhes da página</h4>
+          <ul>
+            <li><strong>Categoria:</strong> {this.state.site.category}</li>
+            <li><strong>Sobre:</strong> {this.state.site.about}</li>
+            <li><strong>Curtidas:</strong> {this.state.site.fan_count}</li>
+            <li><strong>Link para página:</strong> <a href={this.state.site.link} target='_blank' rel='noopener'>{this.state.site.link}</a></li>
+          </ul>
+          <h4>Últimas atividades</h4>
+          <ul>
+            <li><strong>Atualização da página:</strong> {this.state.site.log.check_page}</li>
+            <li><strong>Atualização do feed:</strong> {this.state.site.log.check_feed}</li>
+            <li><strong>Atualização dos álbuns:</strong> {this.state.site.log.check_albums}</li>
+            <li><strong>Última modificação:</strong> {this.state.site.log.last_modified}</li>
+            <li><strong>Última compilação:</strong> {this.state.site.log.last_built}</li>
+          </ul>
         </div>
       )
     }
