@@ -1,6 +1,6 @@
 import React from 'react'
 
-export class MeusSites extends React.Component {
+class EmptyContainer extends React.Component {
   render () {
     return (
       <div>
@@ -9,3 +9,5 @@ export class MeusSites extends React.Component {
     )
   }
 }
+
+export default EmptyContainer

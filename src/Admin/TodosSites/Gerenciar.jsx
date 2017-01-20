@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-import { get } from '../Api'
+import { get } from '../../Api'
 
-export class MeusSitesGerenciar extends React.Component {
+export class TodosSitesGerenciar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -27,7 +27,8 @@ export class MeusSitesGerenciar extends React.Component {
         <h1>Gerenciar Site</h1>
         <ol className='breadcrumb'>
           <li><Link to={'/'}>Mob Your Life</Link></li>
-          <li><Link to={'/Meus-Sites'}>Meus Sites</Link></li>
+          <li><Link to={'/Admin'}>Administração</Link></li>
+          <li><Link to={'/Admin/Todos-Sites'}>Todos Sites</Link></li>
           <li>Gerenciar Site</li>
         </ol>
         {info}
@@ -48,10 +49,10 @@ export class MeusSitesGerenciar extends React.Component {
         <div className='text-center'>
           <img src={'/img/sad.png'} alt='Que triste!' />
           <h3>Ops, não consegui encontrar este site!</h3>
-          <h4>Clique no botão abaixo para listar todos os seus sites e tente novamente.</h4>
+          <h4>Clique no botão abaixo para listar todos os sites e tente novamente.</h4>
           <p>
-            <Link to={'/Meus-Sites'} className='btn btn-lg btn-primary'>
-              Listar Meus Sites
+            <Link to={'/Todos-Sites'} className='btn btn-lg btn-primary'>
+              Listar Todos Sites
             </Link>
           </p>
         </div>

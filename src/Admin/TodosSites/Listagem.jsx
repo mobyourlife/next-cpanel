@@ -1,11 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
 
-import FaPlus from 'react-icons/lib/fa/plus'
+import { get } from '../../Api'
 
-import { get } from '../Api'
-
-export class MeusSitesHome extends React.Component {
+export class TodosSitesListagem extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -15,7 +13,7 @@ export class MeusSitesHome extends React.Component {
   }
 
   componentDidMount () {
-    get('/users/me/sites').then(sites => this.setState({
+    get('/admin/sites').then(sites => this.setState({
       loading: false,
       sites
     }))
@@ -26,10 +24,11 @@ export class MeusSitesHome extends React.Component {
 
     return (
       <div>
-        <h1>Meus Sites</h1>
+        <h1>Todos Sites</h1>
         <ol className='breadcrumb'>
           <li><Link to={'/'}>Mob Your Life</Link></li>
-          <li>Meus Sites</li>
+          <li><Link to={'/Admin'}>Administração</Link></li>
+          <li>Todos Sites</li>
         </ol>
         {sites}
       </div>
@@ -48,8 +47,8 @@ export class MeusSitesHome extends React.Component {
       return (
         <div className='text-center'>
           <img src={'/img/sad.png'} alt='Que triste!' />
-          <h3>Você ainda não tem um site, mas é bem fácil resolver isto.</h3>
-          <h4>Clique no botão abaixo para começar.</h4>
+          <h3>Não há nenhum site no sistema! Verifique a conexão com o banco de dados.</h3>
+          <h4>Ou clique no botão abaixo para criar um site para você.</h4>
           <p>
             <Link to={'/Meus-Sites/Novo'} className='btn btn-lg btn-primary'>
               Criar Meu Primeiro Site
@@ -59,8 +58,8 @@ export class MeusSitesHome extends React.Component {
       )
     } else {
       const list = this.state.sites.map(i => (
-        <div className='col-md-6'>
-          <Link to={'/Meus-Sites/Gerenciar/' + i.id} className='row-list-item'>
+        <div key={i.id} className='col-md-6'>
+          <Link to={'/Admin/Todos-Sites/Gerenciar/' + i.id} className='row-list-item'>
             <img src={i.picture} alt={i.name} style={{width: 50, height: 50, marginRight: 20}} />
             {i.name}
           </Link>
@@ -69,13 +68,8 @@ export class MeusSitesHome extends React.Component {
 
       return (
         <div>
+          <p>Exibindo {list.length} sites ativos.</p>
           <div className='row'>{list}</div>
-          <p className='text-right'>
-            <Link to={'/Meus-Sites/Novo'} className='btn btn-lg btn-primary'>
-              <FaPlus style={{marginRight: 10}} />
-              Criar Novo Site
-            </Link>
-          </p>
         </div>
       )
     }

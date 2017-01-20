@@ -4,8 +4,11 @@ import { AppContainer } from 'react-hot-loader'
 import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-router'
 
 import App from './src/App'
+import EmptyContainer from './src/EmptyContainer'
+import { AdminHome } from './src/Admin'
+import { TodosSitesListagem, TodosSitesGerenciar } from './src/Admin/TodosSites'
 import { AccountLogin, AccountLogout, isLoggedIn } from './src/Account'
-import { MeusSites, MeusSitesHome, MeusSitesNovo, MeusSitesGerenciar } from './src/MeusSites'
+import { MeusSitesListagem, MeusSitesNovo, MeusSitesGerenciar } from './src/MeusSites'
 
 if (module.hot) {
   module.hot.accept()
@@ -16,10 +19,17 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Redirect from='/' to='/Meus-Sites' />
       <Route path='/' component={App} onEnter={requireAuth}>
-        <Route path='Meus-Sites' component={MeusSites}>
-          <IndexRoute component={MeusSitesHome} />
+        <Route path='Meus-Sites' component={EmptyContainer}>
+          <IndexRoute component={MeusSitesListagem} />
           <Route path='Novo' component={MeusSitesNovo} />
           <Route path='Gerenciar/:id' component={MeusSitesGerenciar} />
+        </Route>
+        <Route path='Admin' component={EmptyContainer}>
+          <IndexRoute component={AdminHome} />
+          <Route path='Todos-Sites' component={EmptyContainer}>
+            <IndexRoute component={TodosSitesListagem} />
+            <Route path='Gerenciar/:id' component={TodosSitesGerenciar} />
+          </Route>
         </Route>
       </Route>
       <Route path='/Entrar' component={AccountLogin} />

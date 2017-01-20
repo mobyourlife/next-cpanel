@@ -1,8 +1,22 @@
 import React from 'react'
 
+import { get } from './Api'
 import NavLink from './NavLink'
 
 export default class App extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      user: null
+    }
+  }
+
+  componentDidMount () {
+    get('/users/me').then(user => {
+      this.setState({user})
+    })
+  }
+
   render () {
     const year = new Date().getFullYear()
 
@@ -37,6 +51,7 @@ export default class App extends React.Component {
               <ul className='nav nav-sidebar'>
                 <NavLink to={'/Meus-Sites'}>Meus Sites</NavLink>
               </ul>
+              {this.renderAdminMenu()}
             </div>
             <div className='col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>
               {this.props.children}
@@ -45,5 +60,20 @@ export default class App extends React.Component {
         </div>
       </div>
     )
+  }
+
+  renderAdminMenu () {
+    if (this.state.user && this.state.user.admin) {
+      return (
+        <div>
+          <header>Administração</header>
+          <ul className='nav nav-sidebar'>
+            <NavLink to={'/Admin/Todos-Sites'}>Todos Sites</NavLink>
+          </ul>
+        </div>
+      )
+    } else {
+      return null
+    }
   }
 }
