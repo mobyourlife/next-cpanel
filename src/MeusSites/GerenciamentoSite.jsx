@@ -6,7 +6,7 @@ import FaStar from 'react-icons/lib/fa/star'
 import FaFacebook from 'react-icons/lib/fa/facebook'
 import FaCircle from 'react-icons/lib/fa/circle'
 
-import { get } from '../Api'
+import { get, patch } from '../Api'
 import Loading from '../Loading'
 import FormatDate from '../FormatDate'
 
@@ -15,14 +15,21 @@ export class GerenciamentoSite extends React.Component {
     super(props)
     this.state = {
       loading: true,
-      site: null
+      site: null,
+      saving: false,
+      title: '',
+      domain: '',
+      analytics_id: ''
     }
   }
 
   componentDidMount () {
     get('/sites/' + this.props.id).then(site => this.setState({
       loading: false,
-      site
+      site,
+      title: (site.custom && site.custom.title) || '',
+      domain: (site.admin && site.admin.domain) || '',
+      analytics_id: (site.admin && site.admin.analytics_id) || ''
     }))
   }
 
@@ -77,27 +84,59 @@ export class GerenciamentoSite extends React.Component {
   }
 
   pagePreferences () {
+    const inputClass = 'form-control' + (this.state.saving ? ' disabled' : '')
+    const btnClass = 'btn btn-primary' + (this.state.saving ? ' disabled' : '')
+    const spinner = this.state.saving ? <FaFw><img src={'/img/loading-button.gif'} alt='Salvando...' /></FaFw> : null
+
     return (
       <form>
         <div className='form-group'>
           <label>Título do site</label>
-          <input type='text' className='form-control' placeholder='Altere o título do site, se desejar, ou deixe em branco para usar o nome da página' />
+          <input type='text' value={this.state.title} onChange={ev => this.setState({title: ev.target.value})} className={inputClass} placeholder='Altere o título do site, se desejar, ou deixe em branco para usar o nome da página' />
         </div>
         <div className='form-group'>
           <label>Domínio</label>
-          <input type='text' className='form-control' placeholder='Utilize o seu domínio próprio ou um subdomínio gratuito' />
+          <input type='text' value={this.state.domain} onChange={ev => this.setState({domain: ev.target.value})} className={inputClass} placeholder='Utilize o seu domínio próprio ou um subdomínio gratuito' />
         </div>
         <div className='form-group'>
           <label>Código do Google Analytics</label>
-          <input type='text' className='form-control' placeholder='Insira seu código do Google Analytics para monitorar seu site' />
+          <input type='text' value={this.state.analytics_id} onChange={ev => this.setState({analytics_id: ev.target.value})} className={inputClass} placeholder='Insira seu código do Google Analytics para monitorar seu site' />
         </div>
         <p className='text-right'>
-          <button type='button' className='btn btn-primary'>
+          <button onClick={() => this.savePreferences()}
+            type='button' className={btnClass}>
+            {spinner}
             Salvar
           </button>
         </p>
       </form>
     )
+  }
+
+  savePreferences () {
+    this.setState({saving: true})
+
+    const id = this.state.site._id
+    const data = {
+      title: this.state.title,
+      domain: this.state.domain,
+      analytics_id: this.state.analytics_id
+    }
+    patch(`/admin/sites/${id}`, data).then(res => {
+      if (res.statusCode === 400) {
+        alert(res.message)
+      } else {
+        this.setState({
+          title: data.title,
+          domain: data.domain,
+          analytics_id: data.analytics_id
+        })
+      }
+      this.setState({saving: false})
+    }, err => {
+      alert(res.message)
+      this.setState({saving: false})
+    })
   }
 
   pageDetails () {

@@ -22,6 +22,15 @@ export function post (method, data) {
   .then(res => res.json())
 }
 
+export function patch (method, data) {
+  return fetch(url + method, {
+    method: 'PATCH',
+    headers: makeHeaders(),
+    body: JSON.stringify(data || '')
+  })
+  .then(res => res.json())
+}
+
 function getEnvironmentUrl () {
   switch (process.env.NODE_ENV) {
     case 'production':
