@@ -5,6 +5,10 @@ const FormatDate = ({value}) => <span>{applyFormat(value)}</span>
 export default FormatDate
 
 function applyFormat (s) {
+  if (!s) {
+    return '-'
+  }
+  
   const date = new Date(s)
   const yyyy = date.getFullYear()
   const mm = padLeft(date.getMonth() + 1)

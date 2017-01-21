@@ -24,13 +24,19 @@ export class GerenciamentoSite extends React.Component {
   }
 
   componentDidMount () {
-    get('/sites/' + this.props.id).then(site => this.setState({
-      loading: false,
+    get('/sites/' + this.props.id).then(site => {
+      this.setState({loading: false})
+      this.setSiteInfo(site)
+    })
+  }
+
+  setSiteInfo (site) {
+    this.setState({
       site,
       title: (site.custom && site.custom.title) || '',
       domain: (site.admin && site.admin.domain) || '',
       analytics_id: (site.admin && site.admin.analytics_id) || ''
-    }))
+    })
   }
 
   render () {
@@ -92,7 +98,7 @@ export class GerenciamentoSite extends React.Component {
       <form>
         <div className='form-group'>
           <label>Título do site</label>
-          <input type='text' value={this.state.title} onChange={ev => this.setState({title: ev.target.value})} className={inputClass} placeholder='Altere o título do site, se desejar, ou deixe em branco para usar o nome da página' />
+          <input type='text' value={this.state.title} onChange={ev => this.setState({title: ev.target.value})} className={inputClass} placeholder='Altere o título do site se desejar, ou deixe em branco para usar o nome da página' />
         </div>
         <div className='form-group'>
           <label>Domínio</label>
@@ -126,11 +132,7 @@ export class GerenciamentoSite extends React.Component {
       if (res.statusCode === 400) {
         alert(res.message)
       } else {
-        this.setState({
-          title: data.title,
-          domain: data.domain,
-          analytics_id: data.analytics_id
-        })
+        this.setSiteInfo(res)
       }
       this.setState({saving: false})
     }, err => {
@@ -162,10 +164,10 @@ export class GerenciamentoSite extends React.Component {
         <div className='panel-heading'>Últimas atividades</div>
         <div className='panel-body panel-list-group'>
           <ul className='list-group'>
-            <DateItem label='Sync página' value={this.state.site.log.check_page} />
-            <DateItem label='Sync feed' value={this.state.site.log.check_feed} />
-            <DateItem label='Sync álbuns' value={this.state.site.log.check_albums} />
-            <DateItem label='Site atualizado' value={this.state.site.log.last_built} />
+            <DateItem label='Sync página' value={this.state.site && this.state.site.log && this.state.site.log.check_page} />
+            <DateItem label='Sync feed' value={this.state.site && this.state.site.log && this.state.site.log.check_feed} />
+            <DateItem label='Sync álbuns' value={this.state.site && this.state.site.log && this.state.site.log.check_albums} />
+            <DateItem label='Site atualizado' value={this.state.site && this.state.site.log && this.state.site.log.last_built} />
           </ul>
         </div>
       </div>
