@@ -67,7 +67,7 @@ export class MeusSitesListagem extends React.Component {
         <div>
           <div className='row'>{list}</div>
           <p className='text-right'>
-            <Link to={'/Meus-Sites/Novo'} className='btn btn-lg btn-primary'>
+            <Link to={'/Meus-Sites/Novo'} className='btn btn-primary'>
               <FaPlus style={{marginRight: 10}} />
               Criar Novo Site
             </Link>

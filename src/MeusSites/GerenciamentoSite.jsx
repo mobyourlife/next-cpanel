@@ -5,6 +5,7 @@ import FaFw from '../FaFw'
 import FaStar from 'react-icons/lib/fa/star'
 import FaFacebook from 'react-icons/lib/fa/facebook'
 import FaCircle from 'react-icons/lib/fa/circle'
+import FaLink from 'react-icons/lib/fa/external-link'
 
 import { get, patch } from '../Api'
 import Loading from '../Loading'
@@ -67,11 +68,19 @@ export class GerenciamentoSite extends React.Component {
   details () {
     return (
       <div>
-        <h3>
-          <img src={this.state.site.picture} alt={this.state.site.name} className='img-thumbnail'
-            style={{width: 50, height: 50, marginRight: 20}} />
-          {this.state.site.name}
-        </h3>
+        <div style={{borderBottom: '1px solid #ddd', paddingBottom: 5, marginBottom: 10}}>
+          <h3>
+            <img src={this.state.site.picture} alt={this.state.site.name}
+              style={{width: 50, height: 50, marginRight: 10}} />
+            {this.state.site.name}
+          </h3>
+          <p>
+            <a className='btn btn-default' href={'http://' + this.state.site.admin.domain} target='_blank' rel='noopener'>
+            <FaFw><FaLink /></FaFw>
+            Acessar Site
+            </a>
+          </p>
+        </div>
 
         {this.pagePreferences()}
 
