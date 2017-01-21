@@ -59,6 +59,11 @@ export class GerenciamentoSite extends React.Component {
             style={{width: 50, height: 50, marginRight: 20}} />
           {this.state.site.name}
         </h3>
+
+        {this.pagePreferences()}
+
+        <hr/>
+
         <div className='row'>
           <div className='col-md-6'>
             {this.pageDetails()}
@@ -68,6 +73,30 @@ export class GerenciamentoSite extends React.Component {
           </div>
         </div>
       </div>
+    )
+  }
+
+  pagePreferences () {
+    return (
+      <form>
+        <div className='form-group'>
+          <label>Título do site</label>
+          <input type='text' className='form-control' placeholder='Altere o título do site, se desejar, ou deixe em branco para usar o nome da página' />
+        </div>
+        <div className='form-group'>
+          <label>Domínio</label>
+          <input type='text' className='form-control' placeholder='Utilize o seu domínio próprio ou um subdomínio gratuito' />
+        </div>
+        <div className='form-group'>
+          <label>Código do Google Analytics</label>
+          <input type='text' className='form-control' placeholder='Insira seu código do Google Analytics para monitorar seu site' />
+        </div>
+        <p className='text-right'>
+          <button type='button' className='btn btn-primary'>
+            Salvar
+          </button>
+        </p>
+      </form>
     )
   }
 
