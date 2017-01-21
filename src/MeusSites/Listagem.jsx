@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 import FaPlus from 'react-icons/lib/fa/plus'
 
 import { get } from '../Api'
+import Loading from '../Loading'
 
 export class MeusSitesListagem extends React.Component {
   constructor (props) {
@@ -38,12 +39,7 @@ export class MeusSitesListagem extends React.Component {
 
   renderSites () {
     if (this.state.loading) {
-      return (
-        <div className='text-center'>
-          <p><img src={'/img/loading.gif'} alt='Carregando' /></p>
-          <h4>Aguarde, carregando...</h4>
-        </div>
-      )
+      return <Loading />
     } else if (!this.state.sites || !this.state.sites.length) {
       return (
         <div className='text-center'>
