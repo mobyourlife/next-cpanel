@@ -108,7 +108,7 @@ export class GerenciamentoSite extends React.Component {
           <p>{this.state.site.about}</p>
           <p>
             <span className='btn btn-link no-link'><FaStar /> {this.state.site.fan_count} curtidas</span>
-            <a href={this.state.site.link} className='pull-right btn btn-facebook' target='_blank' rel='noopener'>
+            <a href={this.state.site.link || 'https://www.facebook.com/' + this.state.fb_account_id} className='pull-right btn btn-facebook' target='_blank' rel='noopener'>
               <FaFw><FaFacebook /></FaFw> Abrir no Facebook
             </a>
           </p>
