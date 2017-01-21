@@ -9,8 +9,8 @@ function applyFormat (s) {
   const yyyy = date.getFullYear()
   const mm = padLeft(date.getMonth() + 1)
   const dd = padLeft(date.getDate())
-  const hh = date.getHours()
-  const min = date.getMinutes()
+  const hh = padLeft(date.getHours())
+  const min = padLeft(date.getMinutes())
   return `${dd}/${mm}/${yyyy} ${hh}:${min}`
 }
 
