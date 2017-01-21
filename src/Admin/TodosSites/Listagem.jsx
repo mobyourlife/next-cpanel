@@ -9,6 +9,7 @@ export class TodosSitesListagem extends React.Component {
     super(props)
     this.state = {
       loading: true,
+      filterText: '',
       sites: []
     }
   }
@@ -53,7 +54,9 @@ export class TodosSitesListagem extends React.Component {
         </div>
       )
     } else {
-      const list = this.state.sites.map(i => (
+      const filterred = this.state.sites.filter(i => i.name.toLowerCase().indexOf(this.state.filterText.toLowerCase()) !== -1)
+
+      const list = filterred.map(i => (
         <div key={i.id} className='col-md-6'>
           <Link to={'/Admin/Todos-Sites/Gerenciar/' + i.id} className='row-list-item'>
             <img src={i.picture} alt={i.name} style={{width: 50, height: 50, marginRight: 20}} />
@@ -62,9 +65,17 @@ export class TodosSitesListagem extends React.Component {
         </div>
       ))
 
+      const legendFilter = this.state.filterText ? <p>Filtrando por <span className='label label-info'>{this.state.filterText}</span>:</p> : null
+      const legendQty = this.state.filterText ? <p>Exibindo {list.length} de {this.state.sites.length} sites ativos.</p> : <p>Exibindo {list.length} sites ativos.</p>
+
       return (
         <div>
-          <p>Exibindo {list.length} sites ativos.</p>
+          <p>
+            <input type='text' className='form-control' placeholder='Digite aqui para filtrar'
+              value={this.state.filterText} onChange={ev => this.setState({filterText: ev.target.value})}/>
+          </p>
+          {legendFilter}
+          {legendQty}
           <div className='row'>{list}</div>
         </div>
       )
