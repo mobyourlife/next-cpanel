@@ -86,17 +86,22 @@ export class TodosSitesListagem extends React.Component {
 }
 
 function syncState (i) {
-  console.log({i})
-  const diff = getWorstTimespan(i.log)
-  const state = getStateForTimespan(diff)
+  const times = [
+    i.log.check_page,
+    i.log.check_feed,
+    i.log.check_albums,
+    i.log.last_built
+  ]
+  const worst = getWorstTimespan(times)
+  const state = getStateForTimespan(worst)
   return state
 }
 
-function getWorstTimespan (log) {
+function getWorstTimespan (times) {
   let worst = null
 
-  for (let i of Object.keys(log)) {
-    const value = Date.parse(log[i])
+  for (let i of times) {
+    const value = Date.parse(i)
     if (!worst || (value && value < worst)) {
       worst = value
     }
