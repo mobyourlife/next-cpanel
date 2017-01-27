@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 import { get } from './Api'
 import NavLink from './NavLink'
@@ -19,6 +20,7 @@ export default class App extends React.Component {
 
   render () {
     const year = new Date().getFullYear()
+    const isAdmin = this.state.user && this.state.user.admin
 
     return (
       <div>
@@ -31,9 +33,9 @@ export default class App extends React.Component {
                 <span className='icon-bar'></span>
                 <span className='icon-bar'></span>
               </button>
-              <a className='navbar-brand' href='#'>
+              <Link to={'/'} className='navbar-brand'>
                 <img src='/img/logo-white.png' alt='Mob Your Life' />
-              </a>
+              </Link>
             </div>
             <div id='navbar' className='navbar-collapse collapse'>
               <ul className='nav navbar-nav navbar-right'>
@@ -47,19 +49,29 @@ export default class App extends React.Component {
 
         <div className='container-fluid'>
           <div className='row'>
-            <div className='col-sm-3 col-md-2 sidebar'>
-              <ul className='nav nav-sidebar'>
-                <NavLink to={'/Meus-Sites'}>Meus Sites</NavLink>
-              </ul>
-              {this.renderAdminMenu()}
-            </div>
-            <div className='col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main'>
+            {this.renderMenu()}
+            <div className={isAdmin ? 'col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main' : 'col-sm-12'}>
               {this.props.children}
             </div>
           </div>
         </div>
       </div>
     )
+  }
+
+  renderMenu () {
+    if (this.state.user && this.state.user.admin) {
+      return (
+        <div className='col-sm-3 col-md-2 sidebar'>
+          <ul className='nav nav-sidebar'>
+            <NavLink to={'/Meus-Sites'}>Meus Sites</NavLink>
+          </ul>
+          {this.renderAdminMenu()}
+        </div>
+      )
+    } else {
+      return null
+    }
   }
 
   renderAdminMenu () {
