@@ -55,7 +55,7 @@ export class MeusSitesListagem extends React.Component {
       )
     } else {
       const list = this.state.sites.map(i => (
-        <div key={i.id} className='col-md-6'>
+        <div key={i.id}>
           <Link to={'/Meus-Sites/Gerenciar/' + i.id} className='row-list-item'>
             <img src={i.picture} alt={i.name} style={{width: 50, height: 50, marginRight: 20}} />
             {i.name}
@@ -65,7 +65,7 @@ export class MeusSitesListagem extends React.Component {
 
       return (
         <div>
-          <div className='row'>{list}</div>
+          <div>{list}</div>
           <p className='text-right'>
             <Link to={'/Meus-Sites/Novo'} className='btn btn-primary'>
               <FaPlus style={{marginRight: 10}} />

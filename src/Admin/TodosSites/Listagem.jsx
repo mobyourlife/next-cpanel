@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 
 import { get } from '../../Api'
 import Loading from '../../Loading'
+import { getStateForTimespan } from '../../MeusSites/GerenciamentoSite'
 
 export class TodosSitesListagem extends React.Component {
   constructor (props) {
@@ -58,7 +59,8 @@ export class TodosSitesListagem extends React.Component {
 
       const list = filterred.map(i => (
         <div key={i.id} className='col-md-6'>
-          <Link to={'/Admin/Todos-Sites/Gerenciar/' + i.id} className='row-list-item'>
+          <Link to={'/Admin/Todos-Sites/Gerenciar/' + i.id}
+            className={'row-list-item ' + syncState(i)}>
             <img src={i.picture} alt={i.name} style={{width: 50, height: 50, marginRight: 20}} />
             {i.name}
           </Link>
@@ -81,4 +83,24 @@ export class TodosSitesListagem extends React.Component {
       )
     }
   }
+}
+
+function syncState (i) {
+  console.log({i})
+  const diff = getWorstTimespan(i.log)
+  const state = getStateForTimespan(diff)
+  return state
+}
+
+function getWorstTimespan (log) {
+  let worst = null
+
+  for (let i of Object.keys(log)) {
+    const value = Date.parse(log[i])
+    if (!worst || (value && value < worst)) {
+      worst = value
+    }
+  }
+
+  return worst
 }

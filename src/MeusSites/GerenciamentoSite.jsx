@@ -204,7 +204,7 @@ const DateItem = ({label, value}) => {
   )
 }
 
-function getStateForTimespan (seconds) {
+export function getStateForTimespan (seconds) {
   const minutes = seconds / 60
 
   if (minutes < 60) {

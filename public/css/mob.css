@@ -63,6 +63,18 @@ body {
   border-right: none;
 }
 
+.row-list-item.red {
+  border-left: 3px solid #d9534f;
+}
+
+.row-list-item.yellow {
+  border-left: 3px solid #f0ad4e;
+}
+
+.row-list-item.green {
+  border-left: 3px solid #5cb85c;
+}
+
 /*
  * Global add-ons
  */
