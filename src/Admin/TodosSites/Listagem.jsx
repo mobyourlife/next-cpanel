@@ -93,7 +93,8 @@ function syncState (i) {
     i.log.last_built
   ]
   const worst = getWorstTimespan(times)
-  const state = getStateForTimespan(worst)
+  const diff = (new Date() - worst) / 1000
+  const state = getStateForTimespan(diff)
   return state
 }
 
