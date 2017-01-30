@@ -1,6 +1,8 @@
 /* global FB */
 
 import React from 'react'
+import { FormatMessage } from 'react-easy-intl'
+
 import FaFacebook from 'react-icons/lib/fa/facebook'
 
 import { post } from '../Api'
@@ -28,13 +30,13 @@ export class AccountLogin extends React.Component {
   }
 
   render () {
-    let loginText = <p>Clique no botão abaixo para entrar com a sua conta do Facebook.</p>
+    let loginText = <p><FormatMessage>Click the button below to login with your Facebook account.</FormatMessage></p>
     let loginButton = (
       <div className='login-container'>
         <button onClick={() => this.login()}
           className='btn btn-social btn-lg btn-facebook'>
           <FaFacebook />
-          Entrar com Facebook
+          <FormatMessage>Login with Facebook</FormatMessage>
         </button>
       </div>
     )
@@ -66,7 +68,7 @@ export class AccountLogin extends React.Component {
       <div className='container text-center'>
         <header>
           <img src='/img/logo-square.png' alt='Mob Your Life' />
-          <h1>Seja bem-vindo!</h1>
+          <h1><FormatMessage>Welcome!</FormatMessage></h1>
         </header>
 
         <div style={{marginTop: 30, marginBottom: 30}}>

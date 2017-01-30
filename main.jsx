@@ -3,12 +3,18 @@ import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import { Router, Route, IndexRoute, Redirect, browserHistory } from 'react-router'
 
+import { Globalize } from 'react-easy-intl'
+import messages from './messages'
+
 import App from './src/App'
 import EmptyContainer from './src/EmptyContainer'
 import { AdminHome } from './src/Admin'
 import { TodosSitesListagem, TodosSitesGerenciar } from './src/Admin/TodosSites'
 import { AccountLogin, AccountLogout, isLoggedIn } from './src/Account'
 import { MeusSitesListagem, MeusSitesNovo, MeusSitesGerenciar } from './src/MeusSites'
+
+Globalize.setMessages(messages)
+Globalize.setLocale('en')
 
 if (module.hot) {
   module.hot.accept()
