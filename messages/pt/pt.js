@@ -1,4 +1,5 @@
 const pt = {
+  'Loading, please wait...': 'Aguarde, carregando...',
   'Welcome!': 'Seja bem-vindo!',
   'Click the button below to login with your Facebook account.': 'Clique no botão abaixo para entrar com a sua conta do Facebook.',
   'Login with Facebook': 'Entrar com Facebook',
@@ -13,6 +14,14 @@ const pt = {
   'My Sites': 'Meus Sites',
   'Admin': 'Administração',
   'All Sites': 'Todos Sites',
+  'You still don\'t have a site, but it\'s fairly easy to solve this.': 'Você ainda não tem um site, mas é bem fácil resolver isto.',
+  'Click the button below to get started.': 'Clique no botão abaixo para começar.',
+  'Create My First Site': 'Criar Meu Primeiro Site',
+  'Create New Site': 'Criar Novo Site',
+  'Hey, hold on!': 'Opa, calma aí!',
+  'You still don\'t have a Facebook page.': 'Você ainda não tem uma página no Facebook.',
+  'Do you need help from our fantastic support to create your first page? Just click the button below, we\'ll be happy to help you!': 'Precisa de ajuda do nosso suporte fantástico para criar a sua primeira página? Nós ficaremos felizes em ajudá-lo!',
+  'Those are your Facebook pages. Click over the page for that you want to create a new site.': 'Estas são as suas páginas do Facebook. Clique sobre a página para qual você deseja criar um novo site.',
 }
 
 export default pt
