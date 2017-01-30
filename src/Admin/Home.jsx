@@ -13,7 +13,7 @@ export class AdminHome extends React.Component {
           <li>Administração</li>
         </ol>
         <p>Selecione abaixo a ferramenta administrativa desejada.</p>
-        <Link to={'/Admin/Todos-Sites'} className='btn btn-lg btn-default col-md-3 col-sm-4'>
+        <Link to={'/Admin/All-Sites'} className='btn btn-lg btn-default col-md-3 col-sm-4'>
           <FaGlobe /><br/>
           Todos Sites
         </Link>

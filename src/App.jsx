@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { FormatMessage } from 'react-easy-intl'
 
 import { get } from './Api'
 import NavLink from './NavLink'
@@ -28,7 +29,7 @@ export default class App extends React.Component {
           <div className='container-fluid'>
             <div className='navbar-header'>
               <button type='button' className='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
-                <span className='sr-only'>Toggle navigation</span>
+                <span className='sr-only'><FormatMessage>Toggle navigation</FormatMessage></span>
                 <span className='icon-bar'></span>
                 <span className='icon-bar'></span>
                 <span className='icon-bar'></span>
@@ -39,9 +40,9 @@ export default class App extends React.Component {
             </div>
             <div id='navbar' className='navbar-collapse collapse'>
               <ul className='nav navbar-nav navbar-right'>
-                <NavLink to={'/Perfil'}>Perfil</NavLink>
-                <NavLink to={'/Ajuda'}>Ajuda</NavLink>
-                <NavLink to={'/Sair'}>Sair</NavLink>
+                <NavLink to={'/Profile'}><FormatMessage>Profile</FormatMessage></NavLink>
+                <NavLink to={'/Help'}><FormatMessage>Help</FormatMessage></NavLink>
+                <NavLink to={'/Logout'}><FormatMessage>Logout</FormatMessage></NavLink>
               </ul>
             </div>
           </div>
@@ -64,7 +65,7 @@ export default class App extends React.Component {
       return (
         <div className='col-sm-3 col-md-2 sidebar'>
           <ul className='nav nav-sidebar'>
-            <NavLink to={'/Meus-Sites'}>Meus Sites</NavLink>
+            <NavLink to={'/My-Sites'}><FormatMessage>My Sites</FormatMessage></NavLink>
           </ul>
           {this.renderAdminMenu()}
         </div>
@@ -78,9 +79,9 @@ export default class App extends React.Component {
     if (this.state.user && this.state.user.admin) {
       return (
         <div>
-          <header>Administração</header>
+          <header><FormatMessage>Admin</FormatMessage></header>
           <ul className='nav nav-sidebar'>
-            <NavLink to={'/Admin/Todos-Sites'}>Todos Sites</NavLink>
+            <NavLink to={'/Admin/All-Sites'}><FormatMessage>All Sites</FormatMessage></NavLink>
           </ul>
         </div>
       )

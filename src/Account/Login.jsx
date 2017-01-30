@@ -42,24 +42,24 @@ export class AccountLogin extends React.Component {
     )
 
     if (this.state.connected) {
-      loginText = <p>Aguarde enquanto redirecionamos você...</p>
+      loginText = <p><FormatMessage>Please wait while we redirect you...</FormatMessage></p>
       loginButton = null
     } else if (this.state.notAuthorized) {
       loginText = (
         <div>
           <div className='alert alert-danger'>
-            <p>Você precisa autorizar o login com Facebook para continuar!</p>
+            <p><FormatMessage>You need to authorise login with Facebook to continue.</FormatMessage></p>
           </div>
-          <p>Clique novamente no botão abaixo para entrar utilizando a sua conta do Facebook.</p>
+          <p><FormatMessage>Click the button below again to login with your Facebook account.</FormatMessage></p>
         </div>
       )
     } else if (this.state.failed) {
       loginText = (
         <div>
           <div className='alert alert-danger'>
-            <p>Oops! Algo deu errado ao tentar entrar com a sua conta do Facebook. Por favor tente novamente.</p>
+            <p><FormatMessage>Oops! Something went wrong while trying to login with your Facebook account. Please try again.</FormatMessage></p>
           </div>
-          <p>Clique no botão abaixo para tentar entrar novamente utilizando a sua conta do Facebook.</p>
+          <p><FormatMessage>Click the button below again to login with your Facebook account.</FormatMessage></p>
         </div>
       )
     }

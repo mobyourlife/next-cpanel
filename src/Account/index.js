@@ -1,3 +1,3 @@
 export * from './facebook'
-export * from './Entrar'
-export * from './Sair'
+export * from './Login'
+export * from './Logout'

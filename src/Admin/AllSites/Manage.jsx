@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router'
 
 import { get } from '../../Api'
-import { GerenciamentoSite } from '../../MeusSites/GerenciamentoSite'
+import { SiteManagement } from '../../MySites/SiteManagement'
 
-export class TodosSitesGerenciar extends React.Component {
+export class AllSitesManage extends React.Component {
   render () {
     return (
       <div>

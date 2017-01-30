@@ -9,9 +9,9 @@ import messages from './messages'
 import App from './src/App'
 import EmptyContainer from './src/EmptyContainer'
 import { AdminHome } from './src/Admin'
-import { TodosSitesListagem, TodosSitesGerenciar } from './src/Admin/TodosSites'
+import { AllSitesList, AllSitesManage } from './src/Admin/AllSites'
 import { AccountLogin, AccountLogout, isLoggedIn } from './src/Account'
-import { MeusSitesListagem, MeusSitesNovo, MeusSitesGerenciar } from './src/MeusSites'
+import { MySitesList, MySitesNew, MySitesManage } from './src/MySites'
 
 Globalize.setMessages(messages)
 Globalize.setLocale('en')
@@ -23,23 +23,23 @@ if (module.hot) {
 ReactDOM.render(
   <AppContainer>
     <Router history={browserHistory}>
-      <Redirect from='/' to='/Meus-Sites' />
+      <Redirect from='/' to='/My-Sites' />
       <Route path='/' component={App} onEnter={requireAuth}>
-        <Route path='Meus-Sites' component={EmptyContainer}>
-          <IndexRoute component={MeusSitesListagem} />
-          <Route path='Novo' component={MeusSitesNovo} />
-          <Route path='Gerenciar/:id' component={MeusSitesGerenciar} />
+        <Route path='My-Sites' component={EmptyContainer}>
+          <IndexRoute component={MySitesList} />
+          <Route path='New' component={MySitesNew} />
+          <Route path='Manage/:id' component={MySitesManage} />
         </Route>
         <Route path='Admin' component={EmptyContainer}>
           <IndexRoute component={AdminHome} />
-          <Route path='Todos-Sites' component={EmptyContainer}>
-            <IndexRoute component={TodosSitesListagem} />
-            <Route path='Gerenciar/:id' component={TodosSitesGerenciar} />
+          <Route path='All-Sites' component={EmptyContainer}>
+            <IndexRoute component={AllSitesList} />
+            <Route path='Manage/:id' component={AllSitesManage} />
           </Route>
         </Route>
       </Route>
-      <Route path='/Entrar' component={AccountLogin} />
-      <Route path='/Sair' component={AccountLogout} />
+      <Route path='/Login' component={AccountLogin} />
+      <Route path='/Logout' component={AccountLogout} />
     </Router>
   </AppContainer>,
   document.getElementById('app')
@@ -49,6 +49,6 @@ function requireAuth (nextState, replace, callback) {
   if (isLoggedIn()) {
     callback()
   } else {
-    browserHistory.replace('/Entrar')
+    browserHistory.replace('/Login')
   }
 }

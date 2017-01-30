@@ -4,7 +4,7 @@ import { Link, browserHistory } from 'react-router'
 import { get, post } from '../Api'
 import { getUser } from '../Account/facebook'
 
-export class MeusSitesNovo extends React.Component {
+export class MySitesNew extends React.Component {
   constructor (props) {
     super(props)
     this.state = {

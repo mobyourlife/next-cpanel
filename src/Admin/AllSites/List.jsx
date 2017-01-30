@@ -3,9 +3,9 @@ import { Link } from 'react-router'
 
 import { get } from '../../Api'
 import Loading from '../../Loading'
-import { getStateForTimespan } from '../../MeusSites/GerenciamentoSite'
+import { getStateForTimespan } from '../../MySites/SiteManagement'
 
-export class TodosSitesListagem extends React.Component {
+export class AllSitesList extends React.Component {
   constructor (props) {
     super(props)
     this.state = {

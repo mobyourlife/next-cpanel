@@ -11,7 +11,7 @@ import { get, patch } from '../Api'
 import Loading from '../Loading'
 import FormatDate from '../FormatDate'
 
-export class GerenciamentoSite extends React.Component {
+export class SiteManagement extends React.Component {
   constructor (props) {
     super(props)
     this.state = {

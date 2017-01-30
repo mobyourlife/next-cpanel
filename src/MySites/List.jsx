@@ -6,7 +6,7 @@ import FaPlus from 'react-icons/lib/fa/plus'
 import { get } from '../Api'
 import Loading from '../Loading'
 
-export class MeusSitesListagem extends React.Component {
+export class MySitesList extends React.Component {
   constructor (props) {
     super(props)
     this.state = {

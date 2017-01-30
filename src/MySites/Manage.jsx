@@ -3,9 +3,9 @@ import { Link } from 'react-router'
 
 import { get } from '../Api'
 
-import { GerenciamentoSite } from './GerenciamentoSite'
+import { SiteManagement } from './SiteManagement'
 
-export class MeusSitesGerenciar extends React.Component {
+export class MySitesManage extends React.Component {
   render () {
     return (
       <div>
@@ -15,7 +15,7 @@ export class MeusSitesGerenciar extends React.Component {
           <li><Link to={'/Meus-Sites'}>Meus Sites</Link></li>
           <li>Gerenciar Site</li>
         </ol>
-        <GerenciamentoSite id={this.props.routeParams.id} />
+        <SiteManagement id={this.props.routeParams.id} />
       </div>
     )
   }
