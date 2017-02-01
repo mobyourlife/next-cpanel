@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { FormatMessage } from 'react-easy-intl'
 
 import { get } from '../../Api'
 import Loading from '../../Loading'
@@ -27,11 +28,11 @@ export class AllSitesList extends React.Component {
 
     return (
       <div>
-        <h1>Todos Sites</h1>
+        <h1><FormatMessage>All Sites</FormatMessage></h1>
         <ol className='breadcrumb'>
           <li><Link to={'/'}>Mob Your Life</Link></li>
-          <li><Link to={'/Admin'}>Administração</Link></li>
-          <li>Todos Sites</li>
+          <li><Link to={'/Admin'}><FormatMessage>Admin</FormatMessage></Link></li>
+          <li><FormatMessage>All Sites</FormatMessage></li>
         </ol>
         {sites}
       </div>
@@ -45,11 +46,11 @@ export class AllSitesList extends React.Component {
       return (
         <div className='text-center'>
           <img src={'/img/sad.png'} alt='Que triste!' />
-          <h3>Não há nenhum site no sistema! Verifique a conexão com o banco de dados.</h3>
-          <h4>Ou clique no botão abaixo para criar um site para você.</h4>
+          <h3><FormatMessage>Something is missing! Where are all the sites?</FormatMessage></h3>
+          <h4><FormatMessage>Check database connection first. There should be a lot of sites here.</FormatMessage></h4>
           <p>
-            <Link to={'/Meus-Sites/Novo'} className='btn btn-lg btn-primary'>
-              Criar Meu Primeiro Site
+            <Link to={'/My-Sites/New'} className='btn btn-lg btn-primary'>
+              <FormatMessage>Create My First Site</FormatMessage>
             </Link>
           </p>
         </div>
@@ -59,7 +60,7 @@ export class AllSitesList extends React.Component {
 
       const list = filterred.map(i => (
         <div key={i.id} className='col-md-6'>
-          <Link to={'/Admin/Todos-Sites/Gerenciar/' + i.id}
+          <Link to={'/Admin/All-Sites/Manage/' + i.id}
             className={'row-list-item ' + syncState(i)}>
             <img src={i.picture} alt={i.name} style={{width: 50, height: 50, marginRight: 20}} />
             {i.name}
@@ -68,7 +69,7 @@ export class AllSitesList extends React.Component {
       ))
 
       const legendFilter = this.state.filterText ? <p>Filtrando por <span className='label label-info'>{this.state.filterText}</span>:</p> : null
-      const legendQty = this.state.filterText ? <p>Exibindo {list.length} de {this.state.sites.length} sites ativos.</p> : <p>Exibindo {list.length} sites ativos.</p>
+      const legendQty = this.state.filterText ? <p><FormatMessage qtyFiltered={filterred.length} qtyTotal={this.state.sites.length}>Showing #qtyFiltered of #qtyTotal active sites.</FormatMessage></p> : <p><FormatMessage qtyTotal={this.state.sites.length}>Showing #qtyTotal active sites.</FormatMessage></p>
 
       return (
         <div>

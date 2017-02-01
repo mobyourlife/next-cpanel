@@ -59,7 +59,7 @@ export class MySitesNew extends React.Component {
               <img src='/icons/messenger.png' alt='Reach us on Messenger'/>
             </a>
           </p>
-          <p><a href='https://www.facebook.com/pages/create/' target='_blank'>Clique aqui</a> para começar a criação da sua página no Facebook.</p>
+          <p><a href='https://www.facebook.com/pages/create/' target='_blank'><FormatMessage>Click here to begin creating your Facebook page.</FormatMessage></a></p>
         </div>
       )
     } else {

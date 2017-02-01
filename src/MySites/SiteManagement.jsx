@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { FormatMessage } from 'react-easy-intl'
 
 import FaFw from '../FaFw'
 import FaStar from 'react-icons/lib/fa/star'
@@ -54,11 +55,11 @@ export class SiteManagement extends React.Component {
     return (
       <div className='text-center'>
         <img src={'/img/sad.png'} alt='Que triste!' />
-        <h3>Ops, não consegui encontrar este site!</h3>
-        <h4>Clique no botão abaixo para listar todos os seus sites e tente novamente.</h4>
+        <h3><FormatMessage>Ops, I couldn't find this site!</FormatMessage></h3>
+        <h4><FormatMessage>Click the button below to list your sites and try again.</FormatMessage></h4>
         <p>
-          <Link to={'/Meus-Sites'} className='btn btn-lg btn-primary'>
-            Listar Meus Sites
+          <Link to={'/My-Sites'} className='btn btn-lg btn-primary'>
+            <FormatMessage>List My Sites</FormatMessage>
           </Link>
         </p>
       </div>
@@ -77,7 +78,7 @@ export class SiteManagement extends React.Component {
           <p>
             <a className='btn btn-default' href={'http://' + this.state.site.admin.domain} target='_blank' rel='noopener'>
             <FaFw><FaLink /></FaFw>
-            Acessar Site
+            <FormatMessage>Browse Site</FormatMessage>
             </a>
           </p>
         </div>
@@ -101,27 +102,27 @@ export class SiteManagement extends React.Component {
   pagePreferences () {
     const inputClass = 'form-control' + (this.state.saving ? ' disabled' : '')
     const btnClass = 'btn btn-primary' + (this.state.saving ? ' disabled' : '')
-    const spinner = this.state.saving ? <FaFw><img src={'/img/loading-button.gif'} alt='Salvando...' /></FaFw> : null
+    const spinner = this.state.saving ? <FaFw><img src={'/img/loading-button.gif'} alt='Saving...' /></FaFw> : null
 
     return (
       <form>
         <div className='form-group'>
-          <label>Título do site</label>
+          <label><FormatMessage>Site Title</FormatMessage></label>
           <input type='text' value={this.state.title} onChange={ev => this.setState({title: ev.target.value})} className={inputClass} placeholder='Altere o título do site se desejar, ou deixe em branco para usar o nome da página' />
         </div>
         <div className='form-group'>
-          <label>Domínio</label>
+          <label><FormatMessage>Domain</FormatMessage></label>
           <input type='text' value={this.state.domain} onChange={ev => this.setState({domain: ev.target.value})} className={inputClass} placeholder='Utilize o seu domínio próprio ou um subdomínio gratuito' />
         </div>
         <div className='form-group'>
-          <label>Código do Google Analytics</label>
+          <label><FormatMessage>Google Analytics Code</FormatMessage></label>
           <input type='text' value={this.state.analytics_id} onChange={ev => this.setState({analytics_id: ev.target.value})} className={inputClass} placeholder='Insira seu código do Google Analytics para monitorar seu site' />
         </div>
         <p className='text-right'>
           <button onClick={() => this.savePreferences()}
             type='button' className={btnClass}>
             {spinner}
-            Salvar
+            <FormatMessage>Save</FormatMessage>
           </button>
         </p>
       </form>
@@ -153,13 +154,13 @@ export class SiteManagement extends React.Component {
   pageDetails () {
     return (
       <div className='panel panel-default'>
-        <div className='panel-heading'>Detalhes da página</div>
+        <div className='panel-heading'><FormatMessage>Page Details</FormatMessage></div>
         <div className='panel-body'>
           <p>{this.state.site.about}</p>
           <p>
-            <span className='btn btn-link no-link'><FaStar /> {this.state.site.fan_count} curtidas</span>
+            <span className='btn btn-link no-link'><FaStar /> <FormatMessage likes_count={this.state.site.fan_count}>#likes_count likes</FormatMessage></span>
             <a href={this.state.site.link || 'https://www.facebook.com/' + this.state.site.fb_account_id} className='pull-right btn btn-facebook' target='_blank' rel='noopener'>
-              <FaFw><FaFacebook /></FaFw> Abrir no Facebook
+              <FaFw><FaFacebook /></FaFw> <FormatMessage>Open on Facebook</FormatMessage>
             </a>
           </p>
         </div>
@@ -170,13 +171,13 @@ export class SiteManagement extends React.Component {
   lastActivities () {
     return (
       <div className='panel panel-default'>
-        <div className='panel-heading'>Últimas atividades</div>
+        <div className='panel-heading'><FormatMessage>Latest Activity</FormatMessage></div>
         <div className='panel-body panel-list-group'>
           <ul className='list-group'>
-            <DateItem label='Sync página' value={this.state.site && this.state.site.log && this.state.site.log.check_page} />
-            <DateItem label='Sync feed' value={this.state.site && this.state.site.log && this.state.site.log.check_feed} />
-            <DateItem label='Sync álbuns' value={this.state.site && this.state.site.log && this.state.site.log.check_albums} />
-            <DateItem label='Site atualizado' value={this.state.site && this.state.site.log && this.state.site.log.last_built} />
+            <DateItem label={<FormatMessage>Sync Page</FormatMessage>} value={this.state.site && this.state.site.log && this.state.site.log.check_page} />
+            <DateItem label={<FormatMessage>Sync Feed</FormatMessage>} value={this.state.site && this.state.site.log && this.state.site.log.check_feed} />
+            <DateItem label={<FormatMessage>Sync Albums</FormatMessage>} value={this.state.site && this.state.site.log && this.state.site.log.check_albums} />
+            <DateItem label={<FormatMessage>Site Updated</FormatMessage>} value={this.state.site && this.state.site.log && this.state.site.log.last_built} />
           </ul>
         </div>
       </div>
