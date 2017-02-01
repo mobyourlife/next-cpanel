@@ -14,7 +14,7 @@ import { AccountLogin, AccountLogout, isLoggedIn } from './src/Account'
 import { MySitesList, MySitesNew, MySitesManage } from './src/MySites'
 
 Globalize.setMessages(messages)
-Globalize.setLocale('en')
+Globalize.detectLocale()
 
 if (module.hot) {
   module.hot.accept()

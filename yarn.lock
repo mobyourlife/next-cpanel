@@ -2977,9 +2977,9 @@ react-dom@^15.4.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-react-easy-intl@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-easy-intl/-/react-easy-intl-1.0.1.tgz#08528bd0c756dc25bf7b70538b2780c3f4a750e7"
+react-easy-intl@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-easy-intl/-/react-easy-intl-1.1.2.tgz#f7238fa0d55956437bcff5338515c4f71911a8b6"
   dependencies:
     messageformat "^1.0.2"
     react "^15.4.2"
