@@ -13,7 +13,7 @@ export class MySitesManage extends React.Component {
         <h1><FormatMessage>Manage Site</FormatMessage></h1>
         <ol className='breadcrumb'>
           <li><Link to={'/'}>Mob Your Life</Link></li>
-          <li><Link to={'/Meus-Sites'}><FormatMessage>My Sites</FormatMessage></Link></li>
+          <li><Link to={'/My-Sites'}><FormatMessage>My Sites</FormatMessage></Link></li>
           <li><FormatMessage>Manage Site</FormatMessage></li>
         </ol>
         <SiteManagement id={this.props.routeParams.id} />
