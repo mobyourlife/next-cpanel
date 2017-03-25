@@ -67,6 +67,7 @@ export class SiteManagement extends React.Component {
   }
 
   details () {
+    const link = this.getSiteLink()
     return (
       <div>
         <div style={{borderBottom: '1px solid #ddd', paddingBottom: 5, marginBottom: 10}}>
@@ -75,12 +76,14 @@ export class SiteManagement extends React.Component {
               style={{width: 50, height: 50, marginRight: 10}} />
             {this.state.site.name}
           </h3>
+          {link && (
           <p>
-            <a className='btn btn-default' href={'http://' + this.state.site.admin.domain} target='_blank' rel='noopener'>
+            <a className='btn btn-default' href={link} target='_blank' rel='noopener'>
             <FaFw><FaLink /></FaFw>
             <FormatMessage>Browse Site</FormatMessage>
             </a>
           </p>
+          )}
         </div>
 
         {this.pagePreferences()}
@@ -97,6 +100,14 @@ export class SiteManagement extends React.Component {
         </div>
       </div>
     )
+  }
+
+  getSiteLink() {
+    if (this.state.site && this.state.site.admin) {
+      return 'http://' + this.state.site.admin.domain
+    }
+
+    return ''
   }
 
   pagePreferences () {
